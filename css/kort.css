@@ -8,15 +8,14 @@
 	padding: 0;
 }
 
-html, 
-body {
+html {
     width: 100%;
 	min-height: 100%;
+    overflow-x: hidden;
 }
 
 body {
-	width: 100%;
-    padding-bottom: 100px;
+	padding-bottom: 100px;
     
     background: rgb(122,188,255);
     background: -moz-radial-gradient(center, ellipse cover,  rgba(122,188,255,1) 0%, rgba(96,171,248,1) 44%, rgba(64,150,238,1) 100%);
@@ -83,6 +82,8 @@ p {
 
     .thumb img {
         position: absolute;
+        top: 0;
+        left: 0;
         border: 5px solid white;
         box-shadow: 0px 0px 1px rgba( 0, 0, 0, 0.8 );
     }

@@ -30,15 +30,6 @@ var Kort = (function(){
 
 					element.classList.add( 'kort-activated' );
 
-					if( 'ontouchstart' in window ) {
-						element.addEventListener( 'touchstart', onTouchStart, false );
-					}
-					else {
-						element.addEventListener( 'mouseover', onMouseOver, false );
-						element.addEventListener( 'mouseout', onMouseOut, false );
-						element.addEventListener( 'mousemove', onMouseMove, false );
-					}
-
 					function onMouseOver( event ) {
 						addMargin();
 					}
@@ -103,6 +94,15 @@ var Kort = (function(){
 							child.style.marginLeft = 0;
 
 						} );
+					}
+
+					if( 'ontouchstart' in window ) {
+						element.addEventListener( 'touchstart', onTouchStart, false );
+					}
+					else {
+						element.addEventListener( 'mouseover', onMouseOver, false );
+						element.addEventListener( 'mouseout', onMouseOut, false );
+						element.addEventListener( 'mousemove', onMouseMove, false );
 					}
 
 				}
