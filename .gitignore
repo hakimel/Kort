@@ -1,0 +1,13 @@
+# OS generated files #
+######################
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
+ 
+.settings
+.project
+.tmp
+.svn
+
+deploy

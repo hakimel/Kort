@@ -1,0 +1,170 @@
+
+/**
+ * @author Hakim El Hattab | http://hakim.se
+ */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, 
+body {
+    width: 100%;
+	min-height: 100%;
+}
+
+body {
+	width: 100%;
+    padding-bottom: 100px;
+    
+    background: rgb(122,188,255);
+    background: -moz-radial-gradient(center, ellipse cover,  rgba(122,188,255,1) 0%, rgba(96,171,248,1) 44%, rgba(64,150,238,1) 100%);
+    background: -webkit-radial-gradient(center, ellipse cover,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
+    background: -o-radial-gradient(center, ellipse cover,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
+    background: -ms-radial-gradient(center, ellipse cover,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
+    background: radial-gradient(ellipse at center,  rgba(122,188,255,1) 0%,rgba(96,171,248,1) 44%,rgba(64,150,238,1) 100%);
+
+	font-family: 'Lato', Helvetica, sans-serif;
+	font-size: 18px;
+	color: #fff;
+
+    text-align: center;
+}
+
+a {
+    color: #e7e388;
+	text-decoration: none;
+
+	-webkit-transition: 0.15s color ease;
+	   -moz-transition: 0.15s color ease;
+	    -ms-transition: 0.15s color ease;
+	     -o-transition: 0.15s color ease;
+	        transition: 0.15s color ease;
+}
+	a:hover {
+		color: #fff;
+	}
+
+h1 {
+	font-size: 30px;
+    margin: 0 0 15px 0;
+}
+
+h2 {
+    font-size: 18px;
+    opacity: 0.6;
+    font-weight: normal;
+}
+
+p {
+    margin-bottom: 10px;
+}
+
+.contents {
+    padding: 40px 0px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #222;
+    
+    color: white;
+    background: #39536B;
+}
+
+.sharing {
+    margin-top: 20px;
+}
+
+.thumb {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 20px auto 60px auto;
+}
+
+    .thumb img {
+        position: absolute;
+        border: 5px solid white;
+        box-shadow: 0px 0px 1px rgba( 0, 0, 0, 0.8 );
+    }
+
+
+/**
+ * Kort styles start here, everything above is demo-page 
+ * specific.
+ */
+
+.kort {
+    -webkit-perspective: 1200px;
+       -moz-perspective: 1200px;
+         -o-perspective: 1200px;
+            perspective: 1200px;
+
+    -webkit-perspective-origin: 50% 50%;
+       -moz-perspective-origin: 50% 50%;
+         -o-perspective-origin: 50% 50%;
+            perspective-origin: 50% 50%;
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+}
+
+.kort img {
+    -webkit-transition: all 0.3s ease;
+       -moz-transition: all 0.3s ease;
+         -o-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+}
+
+.kort:hover img.present,
+.kort.touching img.present  {
+    -webkit-transform: none!important;
+       -moz-transform: none;
+         -o-transform: none;
+            transform: none;
+
+    margin: 0!important;
+}
+
+/* DEFAULT TRANSITION */
+.kort:hover img,
+.kort.touching img  {
+    -webkit-transform: translateX( -60% ) rotateY( 60deg ) translateZ(-80px);
+       -moz-transform: translateX( -60% ) rotateY( 60deg ) translateZ(-80px);
+         -o-transform: translateX( -60% ) rotateY( 60deg ) translateZ(-80px);
+            transform: translateX( -60% ) rotateY( 60deg ) translateZ(-80px);
+}
+
+.kort:hover img.present ~ img,
+.kort.touching img.present ~ img {
+    -webkit-transform: translateX( 82% ) rotateY( 50deg );
+       -moz-transform: translateX( 82% ) rotateY( 50deg );
+         -o-transform: translateX( 82% ) rotateY( 50deg );
+            transform: translateX( 82% ) rotateY( 50deg );
+}
+
+/* CONCAVE TRANSITION */
+.kort.concave:hover img.present ~ img,
+.kort.concave.touching img.present ~ img {
+    -webkit-transform: translateX( 60% ) rotateY( -60deg ) translateZ(-80px);;
+       -moz-transform: translateX( 60% ) rotateY( -60deg ) translateZ(-80px);;
+         -o-transform: translateX( 60% ) rotateY( -60deg ) translateZ(-80px);;
+            transform: translateX( 60% ) rotateY( -60deg ) translateZ(-80px);;
+}
+
+/* STACK TRANSITION */
+.kort.stack:hover img,
+.kort.stack.touching img  {
+    -webkit-transform: translateZ(-180px) rotateY( -60deg );
+       -moz-transform: translateZ(-180px) rotateY( -60deg );
+         -o-transform: translateZ(-180px) rotateY( -60deg );
+            transform: translateZ(-180px) rotateY( -60deg );
+}
+
+.kort.stack:hover img.present ~ img,
+.kort.stack.touching img.present ~ img {
+    -webkit-transform: translateX( 82% ) rotateY( 50deg );
+       -moz-transform: translateX( 82% ) rotateY( 50deg );
+         -o-transform: translateX( 82% ) rotateY( 50deg );
+            transform: translateX( 82% ) rotateY( 50deg );
+}
+​
