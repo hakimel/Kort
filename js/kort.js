@@ -3,7 +3,7 @@
  * http://lab.hakim.se/kort
  * MIT licensed
  *
- * Created by Hakim El Hattab (http://hakim.se, @hakimel)
+ * Copyright (C) 2011 Hakim El Hattab (http://hakim.se, @hakimel)
  */
 var Kort = (function(){
 
@@ -20,22 +20,28 @@ var Kort = (function(){
 	 */
 	function bind() {
 
+		// Properties that are read from the DOM when the user hovers
+		// and then cached to avoid needless DOM interaction
+		var elementLeft = 0,
+			elementWidth = 0,
+			elementChildren = [];
+
 		// Gotta have 3D transform support
 		if( supports3DTransforms ) {
 
-			arrayify( document.querySelectorAll( '.kort' ) ).forEach( function( element, i ) {
+			[].slice.call( document.querySelectorAll( '.kort' ) ).forEach( function( element, i ) {
 
 				// Make sure we don't bind to the same element twice
-				if( !element.classList.contains( 'kort-activated' ) ) {
-
+				if( element.classList.contains( 'kort-activated' ) === false ) {
 					element.classList.add( 'kort-activated' );
 
 					function onMouseOver( event ) {
+						updateState();
 						addMargin();
 					}
 
 					function onMouseMove( event ) {
-						updateClasses( event.clientX );
+						update( event.clientX );
 					}
 
 					function onMouseOut( event ) {
@@ -43,9 +49,10 @@ var Kort = (function(){
 					}
 
 					function onTouchStart( event ) {
+						updateState();
 						addMargin();
 
-						updateClasses( event.touches[0].clientX );
+						update( event.touches[0].clientX );
 
 						element.classList.add( 'touching' );
 
@@ -54,7 +61,7 @@ var Kort = (function(){
 					}
 
 					function onTouchMove( event ) {
-						updateClasses( event.touches[0].clientX );
+						update( event.touches[0].clientX );
 
 						event.preventDefault();
 					}
@@ -68,20 +75,33 @@ var Kort = (function(){
 						document.removeEventListener( 'touchend', onTouchEnd, false );
 					}
 
-					function updateClasses( x ) {
-						var index = Math.floor( ( x - element.offsetLeft ) / element.offsetWidth * element.children.length );
+					function updateState() {
+						elementLeft = element.offsetLeft;
+						elementWidth = element.offsetWidth;
+						elementChildren = [].slice.call( element.children );
+					}
 
-						index = Math.max( Math.min( index, element.children.length - 1 ), 0 );
+					function update( x ) {
+						// Find the present element based on the x position
+						var present = Math.floor( ( x - elementLeft ) / elementWidth * elementChildren.length );
 
-						arrayify( element.children ).forEach( function( child, i ) {
+						// Cap to 0 - number_of_elements
+						present = Math.max( Math.min( present, elementChildren.length - 1 ), 0 );
 
-							child.className = i === index ? 'present' : '';
+						elementChildren.forEach( function( child, i ) {
+
+							if( i === present ) {
+								child.classList.add( 'present' );
+							}
+							else {
+								child.classList.remove( 'present' );
+							}
 
 						} );
 					}
 
 					function addMargin() {
-						arrayify( element.children ).forEach( function( child, i ) {
+						elementChildren.forEach( function( child, i ) {
 
 							child.style.marginLeft = ( i * OFFSET_MARGIN ) + 'px';
 
@@ -89,7 +109,7 @@ var Kort = (function(){
 					}
 
 					function removeMargin() {
-						arrayify( element.children ).forEach( function( child, i ) {
+						elementChildren.forEach( function( child, i ) {
 
 							child.style.marginLeft = 0;
 
@@ -113,10 +133,7 @@ var Kort = (function(){
 
 	}
 
-	function arrayify( value ) {
-		return [].slice.call( value );
-	}
-
+	// Bind elments that are currently in the DOM
 	bind();
 
 	return {

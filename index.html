@@ -80,6 +80,14 @@
 
 		<script src="js/kort.js"></script>
 
+		<script>
+			// FF OS X animates this at 3-4 FPS when there are box-shadows
+			// on the images, hence the hack... Ugh :/
+			if( navigator.userAgent.match( /firefox/gi ) ) {
+				[].slice.call( document.querySelectorAll( '.thumb img' ) ).forEach(function( el ) { el.style.boxShadow = 'none'; });
+			}
+		</script>
+
 		<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
 
 	</body>

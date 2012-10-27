@@ -116,16 +116,6 @@ p {
             transition: all 0.3s ease;
 }
 
-.kort:hover img.present,
-.kort.touching img.present  {
-    -webkit-transform: none!important;
-       -moz-transform: none;
-         -o-transform: none;
-            transform: none;
-
-    margin: 0!important;
-}
-
 /* DEFAULT TRANSITION */
 .kort:hover img,
 .kort.touching img  {
@@ -167,5 +157,15 @@ p {
        -moz-transform: translateX( 82% ) rotateY( 50deg );
          -o-transform: translateX( 82% ) rotateY( 50deg );
             transform: translateX( 82% ) rotateY( 50deg );
+}
+
+.kort:hover img.present,
+.kort.touching img.present  {
+    -webkit-transform: none;
+       -moz-transform: none;
+         -o-transform: none;
+            transform: none;
+
+    margin: 0!important;
 }
 ​
